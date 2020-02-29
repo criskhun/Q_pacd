@@ -23,7 +23,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -43,6 +45,8 @@ public class Main extends javax.swing.JFrame {
         conn = (Connection) MySqlConnect.ConnectDB();
         currentdate();
         all_ref();
+        Alarmtest ac=new Alarmtest();
+        ac.checkAlarm(24,00);
     }
     
     public void currentdate(){
@@ -1539,6 +1543,27 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_PRIORITY_btnActionPerformed
 
+    public class Alarmtest {
+    public void checkAlarm(final int a, final int b){
+        Thread t=new Thread(){
+            public void run(){
+                int wl=0;
+                while(wl==0){
+                    Calendar c=new GregorianCalendar();
+                    int hour=c.get(Calendar.HOUR_OF_DAY);
+                    int mins=c.get(Calendar.MINUTE);
+                    if(a==hour&&b==mins){
+                        System.exit(0);
+                        break;
+                    }
+                }
+            }
+        };
+        t.setPriority(Thread.MIN_PRIORITY);
+        t.start();
+    }
+    }
+    
     /**
      * @param args the command line arguments
      */
