@@ -46,7 +46,7 @@ public class Main extends javax.swing.JFrame {
         currentdate();
         all_ref();
         Alarmtest ac=new Alarmtest();
-        ac.checkAlarm(24,00);
+        ac.checkAlarm(00,00);
     }
     
     public void currentdate(){
@@ -1348,7 +1348,7 @@ public class Main extends javax.swing.JFrame {
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e);
                 }
-        }
+        } 
         try{
         String sql = "Insert into esd_tbl (Esd_num, Client, Date, Time) values (?,?,?,?)";
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
